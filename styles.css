@@ -53,6 +53,10 @@ ul li a {
   color: aqua;
 }
 
+ul li a:hover {
+  color: #b5b5b5;
+}
+
 main {
   margin: 0 auto;
   width: 90%;
