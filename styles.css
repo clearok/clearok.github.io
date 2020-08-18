@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  font-family: roboto;
+}
+
+#container {  
+  width:800px;
+  margin:0 auto;
+  border: 4px solid teal;
+}
+
+nav {
+  width:75%;
+  margin: 0 auto;
+}
+
+ul { 
+  margin: 40px 0;
+  padding: 0; 
+}
+
+ul li {
+  list-style-type: none;
+  display: inline;
+  width: 150px;
+  padding: 10px;
+  background-color: #ddd;
+  font-size: 16px;
+  text-align: center;
+  margin: 20px 0;
+  border-radius: 50px;
+}
+
+ul li:hover {
+  animation-name: fader;
+  animation-duration:3s;
+  animation-fill-mode: forwards;
+
+ -moz-animation-name: fader;
+ -moz-animation-duration:3s;
+ -moz-animation-fill-mode: forwards;
+
+ -webkit-animation-name: fader;
+ -webkit-animation-duration:2s;
+ -webkit-animation-fill-mode: forwards;
+  
+  cursor: pointer;
+}
+
+ul li a {
+  text-decoration: none;
+}
+
+main {
+  margin: 0 auto;
+  width: 90%;
+  font-family: Verdana;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+/* * * * Animations * * * */
+
+@keyframes fader {
+  0% { background-color: #ccc; }
+  100% { background-color: aqua; } 
+}
+
+/* Firefox */
+@-moz-keyframes fader {
+  0% { background-color: #ccc; }
+  100% { background-color: aqua; } 
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fader {
+  0% { background-color: #ccc; }
+  100% { background-color: aqua; } 
+}
+
