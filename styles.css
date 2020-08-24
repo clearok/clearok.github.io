@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
 body {
-  font-family: monospace;
+  font-family: "SFMono-Regular",Consolas,"Liberation Mono", Menlo, Courier, monospace;
   background-color: #777;
 }
 
