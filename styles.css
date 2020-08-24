@@ -75,6 +75,16 @@ h1 {
   color: #000;
 }
 
+h1.name {
+  text-align: center;
+  font-size: 40px;
+  color: #000;
+  animation-name: floating;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
 h2 {
   text-align: center;
 }
@@ -87,10 +97,40 @@ h2 {
   100% { background-color: #fff; border: 2px solid #000; } 
 }
 
+@keyframes floating {
+  from {
+    transform: translate(0, 0px) rotateY(-12deg);
+    text-shadow: 10px 10px 3px rgba(0,0,0,0.15);
+  }
+  65% {
+    transform: translate(0, 15px) rotateY(10deg) rotateX(10deg);
+    text-shadow: -10px -10px 3px rgba(0,0,0,0.15);
+  }
+  to {
+    transform: translate(0, 0px) rotateY(-12deg);
+    text-shadow: 10px 10px 3px rgba(0,0,0,0.15);
+  }
+}
+
 /* Firefox */
 @-moz-keyframes fader {
   0% { background-color: #b8b8b8; }
   100% { background-color: aqua; border: 2px solid #000; } 
+}
+
+@-moz-keyframes floating {
+  from {
+    transform: translate(0, 0px) rotateY(-12deg);
+    text-shadow: 10px 10px 3px rgba(0,0,0,0.15);
+  }
+  65% {
+    transform: translate(0, 15px) rotateY(10deg) rotateX(10deg);
+    text-shadow: -10px -10px 3px rgba(0,0,0,0.15);
+  }
+  to {
+    transform: translate(0, 0px) rotateY(-12deg);
+    text-shadow: 10px 10px 3px rgba(0,0,0,0.15);
+  }
 }
 
 /* Safari and Chrome */
@@ -99,3 +139,17 @@ h2 {
   100% { background-color: aqua; border: 2px solid #000; } 
 }
 
+@-webkit-keyframes floating {
+  from {
+    transform: translate(0, 0px) rotateY(-12deg);
+    text-shadow: 10px 10px 3px rgba(0,0,0,0.15);
+  }
+  65% {
+    transform: translate(0, 15px) rotateY(10deg) rotateX(10deg);
+    text-shadow: -10px -10px 3px rgba(0,0,0,0.15);
+  }
+  to {
+    transform: translate(0, 0px) rotateY(-12deg);
+    text-shadow: 10px 10px 3px rgba(0,0,0,0.15);
+  }
+}
