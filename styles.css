@@ -113,7 +113,7 @@ h2 {
 /* Firefox */
 @-moz-keyframes fader {
   0% { background-color: #b8b8b8; }
-  100% { background-color: aqua; border: 2px solid #000; } 
+  100% { background-color: #fff; border: 2px solid #000; } 
 }
 
 @-moz-keyframes floating {
@@ -134,7 +134,7 @@ h2 {
 /* Safari and Chrome */
 @-webkit-keyframes fader {
   0% { background-color: #b8b8b8; }
-  100% { background-color: aqua; border: 2px solid #000; } 
+  100% { background-color: #fff; border: 2px solid #000; } 
 }
 
 @-webkit-keyframes floating {
