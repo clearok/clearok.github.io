@@ -15,7 +15,7 @@ body {
 }
 
 nav {
-  width:80%;
+  width:75%;
   margin: 0 auto;
 }
 
@@ -30,7 +30,7 @@ ul li {
   display: inline;
   width: 150px;
   padding: 10px;
-  background-color: #ddd;
+  background-color: #b8b8b8;
   font-size: 16px;
   text-align: center;
   margin: 20px 0;
@@ -85,19 +85,19 @@ h2 {
 /* * * * Animations * * * */
 
 @keyframes fader {
-  0% { background-color: #ddd;}
+  0% { background-color: #b8b8b8;}
   100% { background-color: #fff; border: 2px solid #000; } 
 }
 
 /* Firefox */
 @-moz-keyframes fader {
-  0% { background-color: #ddd; }
+  0% { background-color: #b8b8b8; }
   100% { background-color: aqua; border: 2px solid #000; } 
 }
 
 /* Safari and Chrome */
 @-webkit-keyframes fader {
-  0% { background-color: #ddd; }
+  0% { background-color: #b8b8b8; }
   100% { background-color: aqua; border: 2px solid #000; } 
 }
 
