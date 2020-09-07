@@ -13,7 +13,7 @@
 <div id="container">
   <header>
     <nav>
-      <h1>CNIT 133 homework assignment <span style="color:#b9c3f2;">2</span></h1>
+      <h1>JavaScript assignment <span style="color:#b9c3f2;">2</span></h1>
       <ul>
         <li><a href="index.html">home</a></li>
         <li><a href="hw3.html">hw 3</a></li>
@@ -37,23 +37,45 @@
 
     <div id="fiveNumbers">
       <h2>Part 2</h2>     
-          <input type="text" id="sum">
+          <input type="text" id="sum" placeholder="sum">
           <button id="sumButton">click for the sum</button>
           <br>  
-          <input type="text" id="average">
+          <input type="text" id="average" placeholder="average">
           <button id="avgButton">click for the average</button>
           <br>  
-          <input type="text" id="product">
+          <input type="text" id="product" placeholder="product">
           <button id="productButton">click for the product</button>
           <br>  
+          <input type="text" style="visibility: hidden;">
           <button id="reset">reset</button>
     </div>
 
-    <div id="results" style="margin-top:40px; border:2px solid #000; height: 100px; font-size: 30px; text-align: center; font-family: monospace;"></div>
+    <div id="results" style="margin-top:40px; border:2px solid #000; height: 100px; font-size: 30px; text-align: center; font-family: monospace; display: none;"></div>
 
+
+    <hr>
+
+    <div id="fiverNumbers">
+      <h2>Part 3</h2>
+      <input type="text" id="firstNumber" placeholder="first number">
+      <br>
+      <input type="text" id="secondNumber" placeholder="second number">
+      <br>
+      <input type="text" id="thirdNumber" placeholder="third number">
+      <br>
+      <input type="text" id="fourthNumber" placeholder="fourth number">
+      <br>
+      <input type="text" id="fifthNumber" placeholder="fifth number">
+      <br>
+      <button id="checkFive">check results</button>
+    </div>
+
+    <div id="resultsTwo" style="margin-top:40px; border:2px solid #000; height: 100px; font-size: 30px; text-align: center; font-family: monospace;"></div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
 
-    // part 1
+    ////////// part 1
     // Create a webpage that contains a script that displays in pairs and strong (bold), the letters xy and the numbers 12 and 89 on the same line, with each pair of characters separated by one space.
 
     
@@ -67,7 +89,7 @@
     }
 
 
-    // part 2
+    ////////// part 2
     // Create a webpage that contains a script that inputs three integers via form text boxes and displays the sum, average, and product of the three integers, and the smallest and largest of the three integers. Your results should be displayed using a form textarea or a div element
 
 
@@ -95,6 +117,7 @@
       } else if (isNaN(sumInput.value) || isNaN(avgInput.value) || isNaN(productInput.value)) {
           resultsDiv.innerHTML = nanErrorMsg;
       } else {        
+        resultsDiv.style.display = "block";
         resultsDiv.innerHTML = `The sum of your numbers is: <span style="color:red;">${theSum}.</span>`;
       }
 
@@ -118,7 +141,7 @@
 
     let getProduct = () => {
       
-      let theAvg = (parseInt(sumInput.value) * parseInt(avgInput.value) * parseInt(productInput.value));
+      let theProduct = (parseInt(sumInput.value) * parseInt(avgInput.value) * parseInt(productInput.value));
       let missingErrorMsg = "all fields must have a number to get the product.";
       
       
@@ -127,7 +150,7 @@
       } else if (isNaN(sumInput.value) || isNaN(avgInput.value) || isNaN(productInput.value)) {
           resultsDiv.innerHTML = nanErrorMsg;
       } else {        
-        resultsDiv.innerHTML = `The product of your numbers is: <span style="color:red;">${theAvg}.</span>`;
+        resultsDiv.innerHTML = `The product of your numbers is: <span style="color:red;">${theProduct}.</span>`;
       }
 
     }
@@ -140,16 +163,147 @@
       sumInput.focus();
     }
 
-    sumInput.focus();
-
+    
     // assign onclick event handlers to the proper elements
+    //sumButton.onclick = getSum;
+    
+
     sumButton.onclick = getSum;
     avgButton.onclick = getAvg;
     productButton.onclick = getProduct;
     resetButton.onclick = resetButtons;
 
-    </script>
+    // attach new event handler via jQuery
+    $(document).ready(function () {
 
+      $("#sumButton").click(function () {
+        $("#results").fadeIn(2000);
+      });
+
+      $("#avgButton").click(function () {
+          $("#results").fadeIn(2000);
+      });
+
+      $("#productButton").click(function () {
+          $("#results").fadeIn(2000);
+      });
+
+      $("#reset").click( function () {
+        $("#results").fadeOut(1000);
+      });
+
+    });
+
+
+
+    ////////// Part 3
+    
+    // declaration
+    //let n1,n2,n3,n4,n5,checkButton,theResults,emptyValueMsg;
+
+    
+    // assignments
+    let n1 = document.getElementById("firstNumber");
+    let n2 = document.getElementById("secondNumber");
+    let n3 = document.getElementById("thirdNumber");
+    let n4 = document.getElementById("fourthNumber");
+    let n5 = document.getElementById("fifthNumber");
+    let checkButton = document.getElementById("checkFive");
+    let theResults = document.getElementById("resultsTwo");
+    let emptyValueMsg = "Please enter a value";
+    let numOnlyMsg = "Only numbers are accepted in this form";
+
+    //convert string to numbers
+
+
+    // let isPositive = () => {
+    //   let count;
+    //   count = 0;
+    //   if (parseInt(n1.value) > 0) count++;
+    //   if (parseInt(n2.value) > 0) count++;
+    //   if (parseInt(n3.value) > 0) count++;
+    //   if (parseInt(n4.value) > 0) count++;
+    //   if (parseInt(n5.value) > 0) count++;
+    //   console.log(`Number of positive number's: ${count}`);
+    // }
+
+    // let isNegative = () => {
+    //   let count;
+    //   count = 0;
+    //   if (parseInt(n1.value) < 0) count++;
+    //   if (parseInt(n2.value) < 0) count++;
+    //   if (parseInt(n3.value) < 0) count++;
+    //   if (parseInt(n4.value) < 0) count++;
+    //   if (parseInt(n5.value) < 0) count++;
+    //   console.log(`Number of negative number's: ${count}`);
+    // }
+
+    // let numOfZeros = () => {
+    //   let count;
+    //   count = 0;
+    //   if (parseInt(n1.value) === 0) count++;
+    //   if (parseInt(n2.value) === 0) count++;
+    //   if (parseInt(n3.value) === 0) count++;
+    //   if (parseInt(n4.value) === 0) count++;
+    //   if (parseInt(n5.value) === 0) count++;     
+    //   console.log(`Number of zero's: ${count}`);
+    // }
+
+    // let isNan = () => {
+    //   if (isNan(parseInt(n1.value)) || isNan(parseInt(n2.value))) {
+    //     console.log(numOnlyMsg);
+    //   } 
+    // }
+
+//////////////////////////////////////////////////
+
+    let theProcess = () => {
+
+      let posCount;
+      posCount = 0;
+
+      if (parseInt(n1.value) > 0) posCount++;
+      if (parseInt(n2.value) > 0) posCount++;
+      if (parseInt(n3.value) > 0) posCount++;
+      if (parseInt(n4.value) > 0) posCount++;
+      if (parseInt(n5.value) > 0) posCount++;
+      console.log(`Number of positive number's: ${posCount}`);
+     
+
+      let negCount;
+      negCount = 0;
+
+      if (parseInt(n1.value) < 0) negCount++;
+      if (parseInt(n2.value) < 0) negCount++;
+      if (parseInt(n3.value) < 0) negCount++;
+      if (parseInt(n4.value) < 0) negCount++;
+      if (parseInt(n5.value) < 0) negCount++;
+      console.log(`Number of negative number's: ${negCount}`);
+  
+
+      let zeroCount;
+      zeroCount = 0;
+
+      if (parseInt(n1.value) === 0) zeroCount++;
+      if (parseInt(n2.value) === 0) zeroCount++;
+      if (parseInt(n3.value) === 0) zeroCount++;
+      if (parseInt(n4.value) === 0) zeroCount++;
+      if (parseInt(n5.value) === 0) zeroCount++;     
+      console.log(`Number of zero's: ${zeroCount}`);
+
+      if (isNaN(parseInt(n1.value)) || isNaN(parseInt(n2.value))) {
+          console.log(numOnlyMsg);
+      } 
+
+    }
+
+
+
+
+    // handle click event through the handlers
+    checkButton.addEventListener("click", theProcess);
+    
+    </script>
 
 
   </main>
