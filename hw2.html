@@ -10,28 +10,29 @@
 
 <body>
 
-<div id="container">
-  <header>
-    <nav>
-      <h1>JavaScript assignment <span style="color:#b9c3f2;">2</span></h1>
-      <ul>
-        <li><a href="index.html">home</a></li>
-        <li><a href="hw3.html">hw 3</a></li>
-        <li><a href="hw4.html">hw 4</a></li>
-        <li><a href="hw5.html">hw 5</a></li>
-        <li><a href="hw6.html">hw 6</a></li>
-        <li><a href="hw7.html">hw 7</a></li>
-        <li><a href="hw8.html">hw 8</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
+  <div id="container">
+
+    <header>
+      <nav>
+        <h1>JavaScript assignment <span style="color:#b9c3f2;">2</span></h1>
+        <ul>
+          <li><a href="index.html">home</a></li>
+          <li><a href="hw3.html">hw 3</a></li>
+          <li><a href="hw4.html">hw 4</a></li>
+          <li><a href="hw5.html">hw 5</a></li>
+          <li><a href="hw6.html">hw 6</a></li>
+          <li><a href="hw7.html">hw 7</a></li>
+          <li><a href="hw8.html">hw 8</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
     
 
     <div id="numbers">
       <h2>Part 1</h2>
-      <button id="button1">x y 12 89 (press me)</button>
-      </div>
+      <button id="button1">xy 12 89 (press me)</button>
+    </div>
 
     <hr>
 
@@ -51,7 +52,6 @@
     </div>
 
     <div id="results" style="margin-top:40px; border:2px solid #000; height: 100px; font-size: 30px; text-align: center; font-family: monospace; display: none;"></div>
-
 
     <hr>
 
@@ -77,12 +77,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
 
-    ////////// part 1
+    // part 1
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Create a webpage that contains a script that displays in pairs and strong (bold), the letters xy and the numbers 12 and 89 on the same line, with each pair of characters separated by one space.
 
     
-    // create anonymous function for the event handler through the onclick event
-    document.getElementById("button1").onclick = function() {
+    // delcare variable
+    let docWriteButton;
+    
+    // assign variable
+    docWriteButton = document.getElementById("button1");
+
+
+    // write function
+    let docWriteFunction = () => {
       document.write(`
       <span style="font-family: times new roman; color:red; font-size: 150px; display: inline-block; text-align:center;">x y&nbsp;</span> 
       <span style="font-family: arial; color:blue; font-size: 150px; display:inline-block; text-align:center;">1 2&nbsp;</span>
@@ -90,37 +98,42 @@
       `);
     }
 
+    // attach event handler to DOM element
+    docWriteButton.onclick = docWriteFunction;
 
-    ////////// part 2
+
+    // part 2
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Create a webpage that contains a script that inputs three integers via form text boxes and displays the sum, average, and product of the three integers, and the smallest and largest of the three integers. Your results should be displayed using a form textarea or a div element
 
 
-    // declare global variables for use in functions
+    // declare and assign variables
     let sumInput = document.getElementById("sum");
     let avgInput = document.getElementById("average");
     let productInput = document.getElementById("product");
-
     let resultsDiv = document.getElementById("results");
     let sumButton = document.getElementById("sumButton");
     let avgButton = document.getElementById("avgButton");
     let productButton = document.getElementById("productButton");
     let resetButton = document.getElementById("reset");
-    let nanErrorMsg = "only numbers are accepted in this form"
+    let nanErrorMsg = "only numbers are accepted in this form";
+    let missingErrorMsg = "all fields must have a number to calculate a sum.";
 
 
     let getSum = () => {
       
-      let theSum = (parseInt(sumInput.value) + parseInt(avgInput.value) + parseInt(productInput.value));
-      let missingErrorMsg = "all fields must have a number to calculate a sum.";
-      let nanErrorMsg = "only numbers are accepted in this form"
-      
-      if (sumInput.value === "" || avgInput.value === "" || productInput.value === "") {
-        resultsDiv.innerHTML  = missingErrorMsg;
-      } else if (isNaN(sumInput.value) || isNaN(avgInput.value) || isNaN(productInput.value)) {
+      let theSum = (parseInt(sumInput.value) + parseInt(avgInput.value) + parseInt(productInput.value));      
+      if (sumInput.value === "" ||
+          avgInput.value === "" ||
+          productInput.value === "") {
+          resultsDiv.innerHTML  = missingErrorMsg;
+      } else if (isNaN(sumInput.value) ||
+          isNaN(avgInput.value) ||
+          isNaN(productInput.value)) {
           resultsDiv.innerHTML = nanErrorMsg;
       } else {        
-        resultsDiv.style.display = "block";
-        resultsDiv.innerHTML = `The sum of your numbers is: <span style="color:red;">${theSum}.</span>`;
+          resultsDiv.style.display = "block";
+          resultsDiv.innerHTML = `The sum of your numbers is: <span style="color:red;">${theSum}.</span>`;
       }
 
     }
@@ -131,12 +144,16 @@
       let missingErrorMsg = "all fields must have a number to produce an average.";
       let nanErrorMsg = "only numbers are accepted in this form"
       
-      if (sumInput.value === "" || avgInput.value === "" || productInput.value === "") {
-        resultsDiv.innerHTML  = missingErrorMsg;
-      } else if (isNaN(sumInput.value) || isNaN(avgInput.value) || isNaN(productInput.value)) {
+      if (sumInput.value === "" ||
+          avgInput.value === "" ||
+          productInput.value === "") {
+          resultsDiv.innerHTML  = missingErrorMsg;
+      } else if (isNaN(sumInput.value) ||
+          isNaN(avgInput.value) ||
+          isNaN(productInput.value)) {
           resultsDiv.innerHTML = nanErrorMsg;
       } else {        
-        resultsDiv.innerHTML = `The average of your numbers is: <span style="color:red;">${theAvg}.</span>`;
+          resultsDiv.innerHTML = `The average of your numbers is: <span style="color:red;">${theAvg}.</span>`;
       }
 
     }
@@ -147,12 +164,16 @@
       let missingErrorMsg = "all fields must have a number to get the product.";
       
       
-      if (sumInput.value === "" || avgInput.value === "" || productInput.value === "") {
-        resultsDiv.innerHTML  = missingErrorMsg;
-      } else if (isNaN(sumInput.value) || isNaN(avgInput.value) || isNaN(productInput.value)) {
+      if (sumInput.value === "" ||
+          avgInput.value === "" ||
+          productInput.value === "") {
+          resultsDiv.innerHTML  = missingErrorMsg;
+      } else if (isNaN(sumInput.value) ||
+          isNaN(avgInput.value) ||
+          isNaN(productInput.value)) {
           resultsDiv.innerHTML = nanErrorMsg;
       } else {        
-        resultsDiv.innerHTML = `The product of your numbers is: <span style="color:red;">${theProduct}.</span>`;
+          resultsDiv.innerHTML = `The product of your numbers is: <span style="color:red;">${theProduct}.</span>`;
       }
 
     }
@@ -196,13 +217,14 @@
 
     });
 
+ 
 
-
-    ////////// Part 3
-    ////////// Create a webpage that contains a script that inputs 5 numbers and determines and displays the count of the negative numbers, the number of positive numbers, and the number of zeros.
+    // Part 3
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Create a webpage that contains a script that inputs 5 numbers and determines and displays the count of the negative numbers, the number of positive numbers, and the number of zeros.
 
     
-    // declare and initialize variables
+    // declare and assign variables 
     let n1 = document.getElementById("firstNumber");
     let n2 = document.getElementById("secondNumber");
     let n3 = document.getElementById("thirdNumber");
