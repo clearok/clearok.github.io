@@ -68,6 +68,8 @@
       <input type="text" id="fifthNumber" placeholder="fifth number">
       <br>
       <button id="checkFive">check results</button>
+      <br>
+      <button id="fiveReset">reset</button>
     </div>
 
     <div id="resultsTwo" style="margin-top:40px; border:2px solid #000; height: 100px; font-size: 30px; text-align: center; font-family: monospace;"></div>
@@ -197,12 +199,10 @@
 
 
     ////////// Part 3
-    
-    // declaration
-    //let n1,n2,n3,n4,n5,checkButton,theResults,emptyValueMsg;
+    ////////// Create a webpage that contains a script that inputs 5 numbers and determines and displays the count of the negative numbers, the number of positive numbers, and the number of zeros.
 
     
-    // assignments
+    // declare and initialize variables
     let n1 = document.getElementById("firstNumber");
     let n2 = document.getElementById("secondNumber");
     let n3 = document.getElementById("thirdNumber");
@@ -210,54 +210,29 @@
     let n5 = document.getElementById("fifthNumber");
     let checkButton = document.getElementById("checkFive");
     let theResults = document.getElementById("resultsTwo");
-    let emptyValueMsg = "Please enter a value";
+    let fiveResetButton = document.getElementById("fiveReset");
+    let emptyValueMsg = "Please enter at least one number in each field";
     let numOnlyMsg = "Only numbers are accepted in this form";
 
-    //convert string to numbers
+    // write function 
+    let fiveNumFunction = () => {
+      if ((n1.value)  == "" || 
+          (n2.value)  == "" ||
+          (n3.value)  == "" ||
+          (n4.value)  == "" ||
+          (n5.value) == "") {
+          console.log(emptyValueMsg);
+          return;
+      }
 
-
-    // let isPositive = () => {
-    //   let count;
-    //   count = 0;
-    //   if (parseInt(n1.value) > 0) count++;
-    //   if (parseInt(n2.value) > 0) count++;
-    //   if (parseInt(n3.value) > 0) count++;
-    //   if (parseInt(n4.value) > 0) count++;
-    //   if (parseInt(n5.value) > 0) count++;
-    //   console.log(`Number of positive number's: ${count}`);
-    // }
-
-    // let isNegative = () => {
-    //   let count;
-    //   count = 0;
-    //   if (parseInt(n1.value) < 0) count++;
-    //   if (parseInt(n2.value) < 0) count++;
-    //   if (parseInt(n3.value) < 0) count++;
-    //   if (parseInt(n4.value) < 0) count++;
-    //   if (parseInt(n5.value) < 0) count++;
-    //   console.log(`Number of negative number's: ${count}`);
-    // }
-
-    // let numOfZeros = () => {
-    //   let count;
-    //   count = 0;
-    //   if (parseInt(n1.value) === 0) count++;
-    //   if (parseInt(n2.value) === 0) count++;
-    //   if (parseInt(n3.value) === 0) count++;
-    //   if (parseInt(n4.value) === 0) count++;
-    //   if (parseInt(n5.value) === 0) count++;     
-    //   console.log(`Number of zero's: ${count}`);
-    // }
-
-    // let isNan = () => {
-    //   if (isNan(parseInt(n1.value)) || isNan(parseInt(n2.value))) {
-    //     console.log(numOnlyMsg);
-    //   } 
-    // }
-
-//////////////////////////////////////////////////
-
-    let theProcess = () => {
+      if (isNaN(parseInt(n1.value)) || 
+          isNaN(parseInt(n2.value)) ||
+          isNaN(parseInt(n3.value)) ||
+          isNaN(parseInt(n4.value)) ||
+          isNaN(parseInt(n5.value))) {
+          console.log(numOnlyMsg);
+          return;
+      }
 
       let posCount;
       posCount = 0;
@@ -290,18 +265,20 @@
       if (parseInt(n4.value) === 0) zeroCount++;
       if (parseInt(n5.value) === 0) zeroCount++;     
       console.log(`Number of zero's: ${zeroCount}`);
-
-      if (isNaN(parseInt(n1.value)) || isNaN(parseInt(n2.value))) {
-          console.log(numOnlyMsg);
-      } 
-
     }
 
+    let fiveNumReset = () => {
+      n1.value = "";
+      n2.value = "";
+      n3.value = "";
+      n4.value = "";
+      n5.value = "";
+      n1.focus();
+    }
 
-
-
-    // handle click event through the handlers
-    checkButton.addEventListener("click", theProcess);
+    // attach event handlers to DOM elements
+    checkButton.onclick = fiveNumFunction;
+    fiveResetButton.onclick = fiveNumReset;
     
     </script>
 
