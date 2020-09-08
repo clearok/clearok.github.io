@@ -36,26 +36,25 @@
 
     <hr>
 
-    <div id="fiveNumbers">
+    <div id="threeNumbers">
       <h2>Part 2</h2>     
           <input type="text" id="sum" placeholder="sum">
-          <button id="sumButton">click for the sum</button>
+          
           <br>  
           <input type="text" id="average" placeholder="average">
-          <button id="avgButton">click for the average</button>
-          <br>  
+          <br>
           <input type="text" id="product" placeholder="product">
-          <button id="productButton">click for the product</button>
-          <br>  
-          <input type="text" style="visibility: hidden;">
-          <button id="reset">reset</button>
+          <br>
+          <button id="checkThree">check results</button>
+          <br>
+          <button id="threeReset">reset</button>
     </div>
 
-    <div id="results" style="margin-top:40px; border:2px solid #000; height: 100px; font-size: 30px; text-align: center; font-family: monospace; display: none;"></div>
+    <div id="threeResults"></div>
 
     <hr>
 
-    <div id="fiverNumbers">
+    <div id="fiveNumbers">
       <h2>Part 3</h2>
       <input type="text" id="firstNumber" placeholder="first number">
       <br>
@@ -72,7 +71,7 @@
       <button id="fiveReset">reset</button>
     </div>
 
-    <div id="resultsTwo" style="margin-top:40px; border:2px solid #000; height: 100px; font-size: 30px; text-align: center; font-family: monospace;"></div>
+    <div id="fiveResults"></div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -106,79 +105,61 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Create a webpage that contains a script that inputs three integers via form text boxes and displays the sum, average, and product of the three integers, and the smallest and largest of the three integers. Your results should be displayed using a form textarea or a div element
 
+ 
+    // write function to calculate the sum
+    let threeNumFunction = () => {
 
-    // declare and assign variables
-    let sumInput = document.getElementById("sum");
-    let avgInput = document.getElementById("average");
-    let productInput = document.getElementById("product");
-    let resultsDiv = document.getElementById("results");
-    let sumButton = document.getElementById("sumButton");
-    let avgButton = document.getElementById("avgButton");
-    let productButton = document.getElementById("productButton");
-    let resetButton = document.getElementById("reset");
-    let nanErrorMsg = "only numbers are accepted in this form";
-    let missingErrorMsg = "all fields must have a number to calculate a sum.";
+      // declare and assign variables
+      let sumInput = document.getElementById("sum").value;
+      let avgInput = document.getElementById("average").value;
+      let productInput = document.getElementById("product").value;
+      let resultsDiv = document.getElementById("threeResults");
+      let checkButton = document.getElementById("checkThree");
+      let resetButton = document.getElementById("reset");
+      let nanErrorMsg = "only numbers are accepted in this form";
+      let missingErrorMsg = "all fields must have a number to calculate a sum.";
 
-
-    let getSum = () => {
-      
-      let theSum = (parseInt(sumInput.value) + parseInt(avgInput.value) + parseInt(productInput.value));      
-      if (sumInput.value === "" ||
-          avgInput.value === "" ||
-          productInput.value === "") {
-          resultsDiv.innerHTML  = missingErrorMsg;
-      } else if (isNaN(sumInput.value) ||
-          isNaN(avgInput.value) ||
-          isNaN(productInput.value)) {
-          resultsDiv.innerHTML = nanErrorMsg;
-      } else {        
-          resultsDiv.style.display = "block";
-          resultsDiv.innerHTML = `The sum of your numbers is: <span style="color:red;">${theSum}.</span>`;
+      // check if input fields are empty
+      if (sumInput === "" || avgInput === "" || productInput === "") {
+        resultsDiv.textContent  = missingErrorMsg;
+        return;
       }
 
+      // check if input values have any non numbers in them
+      if (isNaN(sumInput) || isNaN(avgInput) || isNaN(productInput)) {
+        resultsDiv.textContent = nanErrorMsg;      
+        return;
+      } 
+      
+      // convert inputted form values to number data types for math operations
+      sumInput = parseInt(sumInput);
+      avgInput = parseInt(avgInput);
+      productInput = parseInt(productInput);
+
+      // declare new variables
+      let theSum; 
+      let theAverage;
+      let theProduct;
+
+      // assign variables with appropriate math formulas
+      theSum = (sumInput + avgInput + productInput);
+      theAverage = ((sumInput + avgInput + productInput) / 3);
+      theProduct = (sumInput * avgInput * productInput);
+
+      resultsDiv.innerHTML = `The sum of your numbers is <span style="color:red;">${theSum}</span><br>
+                              The average of your numbers is <span style="color:red;">${theAverage}</span><br>
+                              The product of your numbers is <span style="color:red;">${theProduct}</span><br>
+                              The biggest of your numbers is <span style="color:red;">${Math.max(sumInput, avgInput, productInput)}</span><br>
+                              and the smallest of your numbers is <span style="color:red;">${Math.min(sumInput, avgInput, productInput)}</span>`;
     }
 
-    let getAvg = () => {
-      
-      let theAvg = ((parseInt(sumInput.value) + parseInt(avgInput.value) + parseInt(productInput.value) / 3));
-      let missingErrorMsg = "all fields must have a number to produce an average.";
-      let nanErrorMsg = "only numbers are accepted in this form"
-      
-      if (sumInput.value === "" ||
-          avgInput.value === "" ||
-          productInput.value === "") {
-          resultsDiv.innerHTML  = missingErrorMsg;
-      } else if (isNaN(sumInput.value) ||
-          isNaN(avgInput.value) ||
-          isNaN(productInput.value)) {
-          resultsDiv.innerHTML = nanErrorMsg;
-      } else {        
-          resultsDiv.innerHTML = `The average of your numbers is: <span style="color:red;">${theAvg}.</span>`;
-      }
 
-    }
+    let threeNumReset = () => {
+      let sumInput = document.getElementById("sum");
+      let avgInput = document.getElementById("average");
+      let productInput = document.getElementById("product");
+      let resultsDiv = document.getElementById("threeResults");
 
-    let getProduct = () => {
-      
-      let theProduct = (parseInt(sumInput.value) * parseInt(avgInput.value) * parseInt(productInput.value));
-      let missingErrorMsg = "all fields must have a number to get the product.";
-      
-      
-      if (sumInput.value === "" ||
-          avgInput.value === "" ||
-          productInput.value === "") {
-          resultsDiv.innerHTML  = missingErrorMsg;
-      } else if (isNaN(sumInput.value) ||
-          isNaN(avgInput.value) ||
-          isNaN(productInput.value)) {
-          resultsDiv.innerHTML = nanErrorMsg;
-      } else {        
-          resultsDiv.innerHTML = `The product of your numbers is: <span style="color:red;">${theProduct}.</span>`;
-      }
-
-    }
-
-    let resetButtons = () => {
       sumInput.value = "";
       avgInput.value = "";
       productInput.value = "";
@@ -187,33 +168,30 @@
     }
 
     
-    // assign onclick event handlers to the proper elements
-    //sumButton.onclick = getSum;
-    
+    // attach event handlers to DOM elements
+    document.getElementById("checkThree").onclick = threeNumFunction;
+    // avgButton.onclick = getAvg;
+    // productButton.onclick = getProduct;
+    document.getElementById("threeReset").onclick = threeNumReset;
 
-    sumButton.onclick = getSum;
-    avgButton.onclick = getAvg;
-    productButton.onclick = getProduct;
-    resetButton.onclick = resetButtons;
-
-    // attach new event handler via jQuery
+    // attach fade event handler via jQuery
     $(document).ready(function () {
 
-      $("#sumButton").click(function () {
-        $("#results").fadeIn(2000);
+      $("#checkThree").click(function () {
+        $("#threeResults").fadeIn(2000);
       });
 
-      $("#avgButton").click(function () {
-          $("#results").fadeIn(2000);
+      $("#threeReset").click( function () {
+        $("#threeResults").fadeOut(1000);
       });
 
-      $("#productButton").click(function () {
-          $("#results").fadeIn(2000);
-      });
+      $("#checkFive").click(function () {
+        $("#fiveResults").fadeIn(2000);
+      })
 
-      $("#reset").click( function () {
-        $("#results").fadeOut(1000);
-      });
+      $("#fiveReset").click(function () {
+        $("#fiveResults").fadeOut(2000);
+      })
 
     });
 
@@ -223,84 +201,99 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Create a webpage that contains a script that inputs 5 numbers and determines and displays the count of the negative numbers, the number of positive numbers, and the number of zeros.
 
-    
-    // declare and assign variables 
-    let n1 = document.getElementById("firstNumber");
-    let n2 = document.getElementById("secondNumber");
-    let n3 = document.getElementById("thirdNumber");
-    let n4 = document.getElementById("fourthNumber");
-    let n5 = document.getElementById("fifthNumber");
-    let checkButton = document.getElementById("checkFive");
-    let theResults = document.getElementById("resultsTwo");
-    let fiveResetButton = document.getElementById("fiveReset");
-    let emptyValueMsg = "Please enter at least one number in each field";
-    let numOnlyMsg = "Only numbers are accepted in this form";
-
     // write function 
     let fiveNumFunction = () => {
-      if ((n1.value)  == "" || 
-          (n2.value)  == "" ||
-          (n3.value)  == "" ||
-          (n4.value)  == "" ||
-          (n5.value) == "") {
-          console.log(emptyValueMsg);
+
+      // declare and assign variables
+      let n1 = document.getElementById("firstNumber").value;
+      let n2 = document.getElementById("secondNumber").value;
+      let n3 = document.getElementById("thirdNumber").value;
+      let n4 = document.getElementById("fourthNumber").value;
+      let n5 = document.getElementById("fifthNumber").value;
+      let checkButton = document.getElementById("checkFive");
+      let theResults = document.getElementById("fiveResults");
+      let fiveResetButton = document.getElementById("fiveReset");
+      let emptyValueMsg = "Each field must have at least one number ";
+      let numOnlyMsg = "Only numbers are accepted in this form";
+
+      
+      if (n1  === "" || n2  === "" || n3  === "" || n4  === "" || n5 === "") {    
+          theResults.textContent = emptyValueMsg;
           return;
+      } else {      
+          if (isNaN(n1) || isNaN(n2) || isNaN(n3) || isNaN(n4) || isNaN(n5)) {
+              theResults.textContent = numOnlyMsg;
+              return;
+          }
       }
 
-      if (isNaN(parseInt(n1.value)) || 
-          isNaN(parseInt(n2.value)) ||
-          isNaN(parseInt(n3.value)) ||
-          isNaN(parseInt(n4.value)) ||
-          isNaN(parseInt(n5.value))) {
-          console.log(numOnlyMsg);
-          return;
-      }
+      // convert inputted form values to number types for math operations
+      n1 = parseInt(n1);
+      n2 = parseInt(n2);
+      n3 = parseInt(n3);
+      n4 = parseInt(n4);
+      n5 = parseInt(n5);
 
       let posCount;
       posCount = 0;
 
-      if (parseInt(n1.value) > 0) posCount++;
-      if (parseInt(n2.value) > 0) posCount++;
-      if (parseInt(n3.value) > 0) posCount++;
-      if (parseInt(n4.value) > 0) posCount++;
-      if (parseInt(n5.value) > 0) posCount++;
-      console.log(`Number of positive number's: ${posCount}`);
+      if (n1 > 0) posCount++;
+      if (n2 > 0) posCount++;
+      if (n3 > 0) posCount++;
+      if (n4 > 0) posCount++;
+      if (n5 > 0) posCount++;
+      // console.log(`Number of positive number's: ${posCount} \n Number of negative number's: ${negCount} \n Number of zero's: ${zeroCount}`);
      
 
       let negCount;
       negCount = 0;
 
-      if (parseInt(n1.value) < 0) negCount++;
-      if (parseInt(n2.value) < 0) negCount++;
-      if (parseInt(n3.value) < 0) negCount++;
-      if (parseInt(n4.value) < 0) negCount++;
-      if (parseInt(n5.value) < 0) negCount++;
-      console.log(`Number of negative number's: ${negCount}`);
+      if (n1 < 0) negCount++;
+      if (n2 < 0) negCount++;
+      if (n3 < 0) negCount++;
+      if (n4 < 0) negCount++;
+      if (n5 < 0) negCount++;
+      //console.log(`Number of negative number's: ${negCount}`);
   
 
       let zeroCount;
       zeroCount = 0;
 
-      if (parseInt(n1.value) === 0) zeroCount++;
-      if (parseInt(n2.value) === 0) zeroCount++;
-      if (parseInt(n3.value) === 0) zeroCount++;
-      if (parseInt(n4.value) === 0) zeroCount++;
-      if (parseInt(n5.value) === 0) zeroCount++;     
-      console.log(`Number of zero's: ${zeroCount}`);
+      if (n1 === 0) zeroCount++;
+      if (n2 === 0) zeroCount++;
+      if (n3 === 0) zeroCount++;
+      if (n4 === 0) zeroCount++;
+      if (n5 === 0) zeroCount++;     
+      //console.log(`Number of zero's: ${zeroCount}`);
+
+      //theResults.textContent = `Number of positive number's: ${posCount} \n Number of negative number's: ${negCount} \n Number of zero's: ${zeroCount}`;
+      //console.log(`Number of positive number's: ${posCount} \n Number of negative number's: ${negCount} \n Number of zero's: ${zeroCount}`);
+
+      theResults.innerHTML = `The number of positive numbers is <span style="color:red;">${posCount}</span><br>
+                              The number of negative numbers is <span style="color:red;">${negCount}</span><br>
+                              The number of zero's is <span style="color:red;">${zeroCount}</span><br>`;
     }
+    
 
     let fiveNumReset = () => {
+      let n1 = document.getElementById("firstNumber");
+      let n2 = document.getElementById("secondNumber");
+      let n3 = document.getElementById("thirdNumber");
+      let n4 = document.getElementById("fourthNumber");
+      let n5 = document.getElementById("fifthNumber");
+
       n1.value = "";
       n2.value = "";
       n3.value = "";
       n4.value = "";
       n5.value = "";
       n1.focus();
+      console.clear();
     }
 
     // attach event handlers to DOM elements
-    checkButton.onclick = fiveNumFunction;
-    fiveResetButton.onclick = fiveNumReset;
+    document.getElementById("checkFive").onclick = fiveNumFunction;
+    document.getElementById("fiveReset").onclick = fiveNumReset;
     
     </script>
 
