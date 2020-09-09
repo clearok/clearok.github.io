@@ -106,7 +106,7 @@
     // Create a webpage that contains a script that inputs three integers via form text boxes and displays the sum, average, and product of the three integers, and the smallest and largest of the three integers. Your results should be displayed using a form textarea or a div element
 
  
-    // write function to calculate the sum
+    // write function
     let threeNumFunction = () => {
 
       // declare and assign variables
@@ -117,7 +117,7 @@
       let checkButton = document.getElementById("checkThree");
       let resetButton = document.getElementById("reset");
       let nanErrorMsg = "only numbers are accepted in this form";
-      let missingErrorMsg = "all fields must have a number to calculate a sum.";
+      let missingErrorMsg = "all fields must have a number.";
 
       // check if input fields are empty
       if (sumInput === "" || avgInput === "" || productInput === "") {
@@ -146,6 +146,7 @@
       theAverage = ((sumInput + avgInput + productInput) / 3);
       theProduct = (sumInput * avgInput * productInput);
 
+      // print results to the screen via DOM
       resultsDiv.innerHTML = `The sum of your numbers is <span style="color:red;">${theSum}</span><br>
                               The average of your numbers is <span style="color:red;">${theAverage}</span><br>
                               The product of your numbers is <span style="color:red;">${theProduct}</span><br>
@@ -170,15 +171,13 @@
     
     // attach event handlers to DOM elements
     document.getElementById("checkThree").onclick = threeNumFunction;
-    // avgButton.onclick = getAvg;
-    // productButton.onclick = getProduct;
     document.getElementById("threeReset").onclick = threeNumReset;
 
     // attach fade event handler via jQuery
     $(document).ready(function () {
 
       $("#checkThree").click(function () {
-        $("#threeResults").fadeIn(2000);
+        $("#threeResults").fadeIn(1000);
       });
 
       $("#threeReset").click( function () {
@@ -186,11 +185,11 @@
       });
 
       $("#checkFive").click(function () {
-        $("#fiveResults").fadeIn(2000);
+        $("#fiveResults").fadeIn(1000);
       })
 
       $("#fiveReset").click(function () {
-        $("#fiveResults").fadeOut(2000);
+        $("#fiveResults").fadeOut(1000);
       })
 
     });
@@ -242,9 +241,7 @@
       if (n3 > 0) posCount++;
       if (n4 > 0) posCount++;
       if (n5 > 0) posCount++;
-      // console.log(`Number of positive number's: ${posCount} \n Number of negative number's: ${negCount} \n Number of zero's: ${zeroCount}`);
-     
-
+      
       let negCount;
       negCount = 0;
 
@@ -252,9 +249,7 @@
       if (n2 < 0) negCount++;
       if (n3 < 0) negCount++;
       if (n4 < 0) negCount++;
-      if (n5 < 0) negCount++;
-      //console.log(`Number of negative number's: ${negCount}`);
-  
+      if (n5 < 0) negCount++;  
 
       let zeroCount;
       zeroCount = 0;
@@ -264,11 +259,8 @@
       if (n3 === 0) zeroCount++;
       if (n4 === 0) zeroCount++;
       if (n5 === 0) zeroCount++;     
-      //console.log(`Number of zero's: ${zeroCount}`);
 
-      //theResults.textContent = `Number of positive number's: ${posCount} \n Number of negative number's: ${negCount} \n Number of zero's: ${zeroCount}`;
-      //console.log(`Number of positive number's: ${posCount} \n Number of negative number's: ${negCount} \n Number of zero's: ${zeroCount}`);
-
+      // print results to the screen via DOM
       theResults.innerHTML = `The number of positive numbers is <span style="color:red;">${posCount}</span><br>
                               The number of negative numbers is <span style="color:red;">${negCount}</span><br>
                               The number of zero's is <span style="color:red;">${zeroCount}</span><br>`;
