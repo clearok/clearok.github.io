@@ -5,6 +5,7 @@
   <meta name="description" content="CNIT 133 JavaScript">
   <meta charset="utf-8">
   <link rel="stylesheet" href="styles.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/> -->
 </head>
 
 
@@ -13,7 +14,7 @@
 <div id="container">
   <header>
     <nav>
-      <h1>CNIT 133 homework assignment <span style="color:#b9c3f2;">3</span></h1>
+      <h1>JavaScript assignment <span style="color:#b9c3f2;">3</span></h1>
       <ul>
         <li><a href="index.html">home</a></li>
         <li><a href="hw2.html">hw 2</a></li>
@@ -26,9 +27,72 @@
     </nav>
   </header>
   <main>
-    coming soon...
+    <section id="studentGrades">      
+      <h2>Part 1</h2>
+      <h3>Student Grades</h3>
+      <form action="">
+        <label for="homework"><input id="homework" type="number" placeholder="homework" autofocus></label>
+        <label for="midterm"><input id="midterm" type="number" placeholder="mid term"></label>
+        <label for="final"><input id="final" type="number" placeholder="final exam"></label>
+        <label for="participation"><input id="participation" type="number" placeholder="participation"></label>
+        <input type="submit" id="calculate" value="Calculate">
+        <button id="resetStudent">Reset</button>
+      </form>
+    </section>
   </main>
 </div>
+
+
+<script>
+
+  let studentGrades = (e) => {
+
+    e.preventDefault();
+
+    let homeworkAverage = document.getElementById("homework");
+    let midTerm = document.getElementById("midterm");
+    let finalExam = document.getElementById("final");
+    let participation = document.getElementById("participation");
+    let missingValueMsg = "Each field must have a number to Calculate";
+    let numOnlyMsg = "Only numbers are accepted in this form";
+    let finalAverage = 0;
+
+    // check if form input values are in the range of 0-100
+    if (homeworkAverage.value === "" || midTerm.value === "" || finalExam.value === "" || participation.value === "") {
+      console.log(missingValueMsg);
+      return;
+    }
+
+    if ((homeworkAverage.value < 0 || homeworkAverage.value > 100) ||
+      (midTerm.value < 0 || midTerm.value > 100) ||
+      (finalExam.value < 0 || finalExam.value > 100) ||
+      (participation.value < 0 || participation.value > 100))  {
+      console.log("only numbers between the range of 0 and 100 are accepted");
+      return;
+    } else {
+      //convert to number data types for math operations
+      homeworkAverage = parseInt(homeworkAverage.value);
+      midTerm = parseInt(midTerm.value);
+      finalExam = parseInt(finalExam.value);
+      participation = parseInt(participation.value);
+      
+      finalAverage = ((.5 * homeworkAverage) + (.2 * midTerm) + (.2 * finalExam) + (.1 * participation));
+      console.log(`Your final average for the semester is ${finalAverage}` + " " + typeof finalAverage);
+    }
+
+  }
+
+let resetFunction = () => {
+  document.getElementById("homework").value = "";
+  document.getElementById("midterm").value = "";
+  document.getElementById("final").value = "";
+  document.getElementById("participation").value = "";
+  document.getElementById("homework").focus();
+}
+
+document.getElementById("calculate").onclick = studentGrades;
+document.getElementById("resetStudent").onclick = resetFunction;
+</script>
 
 
 </body>
@@ -36,3 +100,20 @@
 
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
