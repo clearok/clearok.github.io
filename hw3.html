@@ -82,7 +82,10 @@
 
   }
 
-let resetFunction = () => {
+let resetFunction = (e) => {
+
+  e.preventDefault()
+
   document.getElementById("homework").value = "";
   document.getElementById("midterm").value = "";
   document.getElementById("final").value = "";
