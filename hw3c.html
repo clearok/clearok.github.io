@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Cesario Mendoza CNIT 133</title>
+  <meta name="description" content="CNIT 133 JavaScript">
+  <meta charset="utf-8">
+  <style type="text/css">
+  input, button {
+    padding:20px; border:2px solid #000; font-size: 30px; font-family: monospace; margin:5px 10px;
+  }
+  button {
+    font-size: 20px;
+    padding:15px;
+  }
+  #tempoutput {
+    background-color: #fff;
+    height: 75px;
+    padding:20px;
+    font-size: 30px;
+    width: 350px;
+    margin-top: 20px;
+    border: 2px solid #000;
+  }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body>
+
+<div id="container">
+  <header>
+    <nav>
+      <h1 class="name">Cesario Mendoza</h1>
+      <h2 class="name">JavaScript</h2>
+      <ul>
+        <li><a href="hw2.html">hw 2</a></li>
+        <li><a href="hw3.html">hw 3</a></li>
+        <li><a href="hw4.html">hw 4</a></li>
+        <li><a href="hw5.html">hw 5</a></li>
+        <li><a href="hw6.html">hw 6</a></li>
+        <li><a href="hw7.html">hw 7</a></li>
+        <li><a href="hw8.html">hw 8</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <!-- main content starts here -->
+    <h2><a href="hw3.html">Part 1</a></h2>
+    <h2><a href="hw3b.html">Part 2</a></h2>
+    <h2>Part 3</h2>
+    <div class="blockCenter" style="width: 400px; margin-top: 30px;">
+      <label for="thename"></label>
+      <input id="conversion" style="padding:20px; border:2px solid #000; font-size: 30px; font-family: monospace;" type="number" inputmode="numeric" name="" title="jQuery show me" placeholder="enter a value" autofocus>
+      <br>
+      <button id="fahrenheitButton">Celsius to Fahrenheit</button>
+      <button id="celsiusButton">Fahrenheit to Celsius</button>
+      <button id="tempReset">Reset</button>
+    </div>
+    <div id="tempoutput" class="blockCenter"></div>
+    <script>
+    let fahrenheit = () => {
+      // declare variables
+      let fahrenheitButton = document.getElementById("fahrenheitButton");
+      let celsiusButton = document.getElementById("celsiusButton");
+      let inputField = document.getElementById("conversion");
+      let outputField = document.getElementById("tempoutput");
+
+      if (inputField.value === "") {
+        outputField.innerHTML = `<span style="color:red;">Please enter a number to continute</span>`;
+        return;
+      }
+      //console.log(typeof inputField);
+      inputField = parseFloat(inputField.value);
+      let temperature = ((inputField * 9/5) +32);
+      //console.log(outputField);
+      outputField.textContent = temperature;
+    }
+
+    let celsius = () => {
+      // declare variables
+      let fahrenheitButton = document.getElementById("fahrenheitButton");
+      let celsiusButton = document.getElementById("celsiusButton");
+      let inputField = document.getElementById("conversion");
+      let outputField = document.getElementById("tempoutput");
+
+      if (inputField.value === "") {
+        outputField.innerHTML = `<span style="color:red;">Please enter a number to continute</span>`;
+        return;
+      }
+      //console.log(typeof inputField);
+      inputField = parseFloat(inputField.value);
+      let temperature = (5/9 * (inputField - 32) );
+      outputField.textContent = temperature;
+    }
+
+    let resetFunction = () => {
+      document.getElementById("conversion").value = ""
+      document.getElementById("tempoutput").innerHTML = "";
+    }
+
+    fahrenheitButton.onclick = fahrenheit;
+    celsiusButton.onclick = celsius;
+    document.getElementById("tempReset").onclick = resetFunction;
+    </script>
+  </main>
+</div>
+
+
+</body>
+
+
+
+</html>

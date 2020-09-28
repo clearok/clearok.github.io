@@ -27,8 +27,11 @@
     </nav>
   </header>
   <main>
+    <!-- main content starts here -->
     <section id="studentGrades">      
       <h2>Part 1</h2>
+      <h2><a href="hw3b.html">Part 2</a></h2>
+      <h2><a href="hw3c.html">Part 3</a></h2>
       <h3>Student Grades</h3>
       <form action="">
         <label for="homework"><input id="homework" type="number" placeholder="homework" inputmode="numeric" autofocus></label>
@@ -38,6 +41,11 @@
         <input type="submit" id="calculate" value="Calculate">
         <button id="resetStudent">Reset</button>
       </form>
+    </section>
+    <section>
+      <div id="results" style="border:2px solid transparent; padding:10px; visibility: visible; height: 100px; margin: 30px auto; border-radius: 10px; width: 80%; text-align: left;">
+        
+      </div>
     </section>
   </main>
 </div>
@@ -53,21 +61,23 @@
     let midTerm = document.getElementById("midterm");
     let finalExam = document.getElementById("final");
     let participation = document.getElementById("participation");
-    let missingValueMsg = "Each field must have a number to Calculate";
-    let numOnlyMsg = "Only numbers are accepted in this form";
+    let resultsDiv = document.getElementById("results");
+    let missingValueMsg = "<span style=\"color:red;\">One or more of your input fields are empty</span>";
+    let numberRanges = "<span style=\"color:red;\">One of your numbers is smaller than 0 or bigger than 100</span>";
     let finalAverage = 0;
 
-    // check if form input values are in the range of 0-100
+    // check if form fields are empty
     if (homeworkAverage.value === "" || midTerm.value === "" || finalExam.value === "" || participation.value === "") {
-      console.log(missingValueMsg);
+      resultsDiv.innerHTML = missingValueMsg;
       return;
     }
 
+    // check if form input values are in the range of 0-100
     if ((homeworkAverage.value < 0 || homeworkAverage.value > 100) ||
       (midTerm.value < 0 || midTerm.value > 100) ||
       (finalExam.value < 0 || finalExam.value > 100) ||
       (participation.value < 0 || participation.value > 100))  {
-      console.log("only numbers between the range of 0 and 100 are accepted");
+      resultsDiv.innerHTML = numberRanges;
       return;
     } else {
       //convert to number data types for math operations
@@ -77,7 +87,22 @@
       participation = parseInt(participation.value);
       
       finalAverage = ((.5 * homeworkAverage) + (.2 * midTerm) + (.2 * finalExam) + (.1 * participation));
-      console.log(`Your final average for the semester is ${finalAverage}` + " " + typeof finalAverage);
+
+      // declare grade variale
+      let finalGrade = "";
+
+      if (finalAverage <= 69) {
+        resultsDiv.innerHTML = `<span style="color:red;">Student must retake course</span>`;
+      } else if (finalAverage >= 70 && finalAverage <= 79) {
+        finalGrade = "C";
+        resultsDiv.innerHTML = `Your final average for the semester is <span style="color:red;">${finalAverage}</span> and your final grade for the semester is <span style="color:red;">${finalGrade}</span>`;
+      } else if (finalAverage >= 80 && finalAverage <= 89) {
+        finalGrade = "B";
+        resultsDiv.innerHTML = `Your final average for the semester is <span style="color:red;">${finalAverage}</span> and your final grade for the semester is <span style="color:red;">${finalGrade}</span>`;
+      } else if (finalAverage >= 90 && finalAverage <= 100) {
+        finalGrade = "A";
+        resultsDiv.innerHTML = `Your final average for the semester is <span style="color:red;">${finalAverage}</span> and your final grade for the semester is <span style="color:red;">${finalGrade}</span>`;
+      }
     }
 
   }
@@ -90,6 +115,7 @@ let resetFunction = (e) => {
   document.getElementById("midterm").value = "";
   document.getElementById("final").value = "";
   document.getElementById("participation").value = "";
+  document.getElementById("results").innerHTML = "";
   document.getElementById("homework").focus();
 }
 

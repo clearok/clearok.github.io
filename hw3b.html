@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cesario Mendoza CNIT 133 Homework Assignment 3</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( document ).tooltip();
+  } );
+  </script>
+  <style>
+  body {
+    font-family: monospace;
+    font-size: 20px;
+  }
+  label {
+    //display: inline-block;
+    width: 5em;
+  }
+  input, button {
+        padding: 10px;
+    font-family: monospace;
+    font-size: 20px;
+    border-radius: 8px;
+  }
+  input[type="number"] {
+    margin:10px 0;
+  }
+  </style>
+  <link rel="stylesheet" href="https://code.jquery.com/resources/demos/style.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body>
+
+<div id="container">
+  <header>
+    <nav>
+      <h1 class="name">Cesario Mendoza</h1>
+      <h2 class="name">JavaScript</h2>
+      <ul>
+        <li><a href="hw2.html">hw 2</a></li>
+        <li><a href="hw3.html">hw 3</a></li>
+        <li><a href="hw4.html">hw 4</a></li>
+        <li><a href="hw5.html">hw 5</a></li>
+        <li><a href="hw6.html">hw 6</a></li>
+        <li><a href="hw7.html">hw 7</a></li>
+        <li><a href="hw8.html">hw 8</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <!-- main content starts here -->
+    <h2><a href="hw3.html">Part 1</a></h2>
+    <h2>Part 2</h2>
+    <h2><a href="hw3c.html">Part 3</a></h2>
+    <form action="">
+    <label for="age">Salesperson: </label>
+    <input id="salesname" type="text" title="Please make sure that the salesperson's name is spelled correctly.">
+
+    <h2 class="blockCenter" style="width:60%;">Input the number of items sold for each item number:</h2>
+    <label for="item1">Item 1:</label>
+    <input id="item1" type="number" inputmode="numeric">
+    <br>
+    <label for="item2">Item 2:</label>
+    <input id="item2" type="number" inputmode="numeric">
+    <br>
+    <label for="item3">Item 3:</label>
+    <input id="item3" type="number" inputmode="numeric">
+    <br>
+    <label for="item4">Item 4:</label>
+    <input id="item4" type="number" inputmode="numeric">
+    <br>
+    <input id="salesSubmit" type="submit" name="Submit"> <button id="salesReset">Reset</button>
+  </form>
+   
+  <script>
+    let submitButton = document.getElementById("salesSubmit");
+    let resetButton = document.getElementById("salesReset");
+    
+    let salesFunction = (e) => {
+      let itemOne = document.getElementById("item1");
+      let itemTwo = document.getElementById("item2");
+      let itemThree = document.getElementById("item3");
+      let itemFour = document.getElementById("item4");
+      e.preventDefault();
+
+    }
+
+    let salesResetFunction = (e) => {
+      e.preventDefault();
+      document.getElementById("salesname").value = "";
+      document.getElementById("item1").value = "";
+      document.getElementById("item2").value = "";
+      document.getElementById("item3").value = "";
+      document.getElementById("item4").value = "";
+      //document.getElementById("salesname").focus();
+    }
+
+    submitButton.onclick = salesFunction;
+    resetButton.onclick = salesResetFunction;
+
+  </script> 
+  </main>
+</div>
+
+
+</body>
+
+
+
+</html>
