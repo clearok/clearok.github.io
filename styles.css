@@ -13,6 +13,10 @@ body {
   padding: 15px;
 }
 
+.blockCenter {
+  margin: 0 auto;
+}
+
 /* * * * Navigation styles * * * */
 
 nav {
