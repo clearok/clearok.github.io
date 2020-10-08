@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cesario Mendoza CNIT 133</title>
+  <meta name="description" content="CNIT 133 JavaScript">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+   
+
+<body>
+
+<div id="sumOutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
+<button id="sumButton">get the Sum!</button>
+<div id="prodOutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
+<button id="prodButton">get the product!</button>
+
+<script>
+		
+	let generateSum = () => {
+		let counter = 0; 
+		let sumDiv = document.getElementById("sumOutput");
+		// //loop from 5 to 21 inclusive in increments of 4
+		for (i = 5; i <= 21; i += 4) {
+			sumDiv.textContent += i + " + ";
+			counter += i;
+		}
+		sumDiv.innerHTML += `<br>The sum of the numbers is: ${counter}`;
+
+
+	}
+
+	let generateProduct = () => {
+		let counter = 0; 
+		
+		let prodDiv = document.getElementById("prodOutput");
+		//loop from 5 to 21 inclusive in increments of 4
+		for (i = 5; i <= 21; i *= 4) {
+			prodDiv.textContent += i + " * ";
+			counter *= i;
+		}
+		prodDiv.innerHTML += `<br>The product of the numbers is: ${counter}`;
+	}
+
+	document.getElementById("sumButton").onclick = generateSum;
+	document.getElementById("prodButton").onclick = generateProduct;
+
+</script>
+</body>
+
+
+
+
+
+</html>
