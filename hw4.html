@@ -83,8 +83,10 @@
     let generateWhileProduct = () => {
         
       let counter = 1;
+      let loopCount = 0;
       let prodDiv = document.getElementById("whileprodoutput");
       while (counter <= 21) {
+        loopCount ++;
         counter *= 3;
       }
       prodDiv.innerHTML = `The product of all of the integers in increments of 3 up to and including 21 is: <span style="color:red;">${counter}</span>`;
