@@ -100,6 +100,13 @@ button {
   font-family: "SFMono-Regular",Consolas,"Liberation Mono", Menlo, Courier, monospace;
 }
 
+input, button {
+    padding: 20px;
+    border: 2px solid #000;
+    font-size: 30px;
+    margin: 5px 10px;
+}
+
 #numbers {
   margin: 0 auto;
   text-align: center;

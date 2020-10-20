@@ -13,7 +13,7 @@
 <div id="container">
   <header>
     <nav>
-      <h1>CNIT 133 homework assignment <span style="color:#b9c3f2;">4</span></h1>
+      <h1>JavaScript assignment <span style="color:#b9c3f2;">4</span></h1>
       <ul>
         <li><a href="index.html">home</a></li>
         <li><a href="hw2.html">hw 2</a></li>
@@ -26,7 +26,43 @@
     </nav>
   </header>
   <main>
-    coming soon...
+    <div id="sumOutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
+<button id="sumButton">get the Sum!</button>
+<div id="prodOutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
+<button id="prodButton">get the product!</button>
+
+<script>
+    
+  let generateSum = () => {
+    
+    let counter = 0; 
+    let sumDiv = document.getElementById("sumOutput");
+    // //loop from 5 to 21 inclusive in increments of 4``
+    for (i = 5; i <= 21; i += 4) {
+      sumDiv.textContent += i + " + ";
+      counter += i;
+    }
+    sumDiv.innerHTML += `<br>The sum of the numbers is: ${counter}`;
+
+  }
+
+  let generateProduct = () => {
+    
+    let counter = 0;    
+    let prodDiv = document.getElementById("prodOutput");
+    //loop from 5 to 21 inclusive in increments of 4
+    for (i = 5; i <= 21; i *= 4) {
+      prodDiv.textContent += i + " * ";
+      counter *= i;
+    }
+    prodDiv.innerHTML += `<br>The product of the numbers is: ${counter}`;
+
+  }
+
+  document.getElementById("sumButton").onclick = generateSum;
+  document.getElementById("prodButton").onclick = generateProduct;
+
+</script>
   </main>
 </div>
 
