@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Cesario Mendoza CNIT 133 Homework Assignment 4</title>
@@ -26,43 +26,73 @@
     </nav>
   </header>
   <main>
-    <div id="sumOutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
-<button id="sumButton">get the Sum!</button>
-<div id="prodOutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
-<button id="prodButton">get the product!</button>
+    <h2>For statement</h2>
+    <div id="forsumoutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
+    <button id="forsumbutton">get the Sum!</button>
+    <div id="forprodoutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
+    <button id="forprodbutton">get the product!</button>
 
-<script>
-    
-  let generateSum = () => {
-    
-    let counter = 0; 
-    let sumDiv = document.getElementById("sumOutput");
-    // //loop from 5 to 21 inclusive in increments of 4``
-    for (i = 5; i <= 21; i += 4) {
-      sumDiv.textContent += i + " + ";
-      counter += i;
+    <script>
+        
+    let generateForSum = () => {
+       
+      let counter = 0; 
+      let sumDiv = document.getElementById("forsumoutput");
+      // //loop from 5 to 21 inclusive in increments of 4``
+      for (i = 5; i <= 21; i += 4) {
+        counter += i;
+      }
+      sumDiv.innerHTML += `<br>The sum of the numbers is: ${counter}`;
     }
-    sumDiv.innerHTML += `<br>The sum of the numbers is: ${counter}`;
 
-  }
-
-  let generateProduct = () => {
-    
-    let counter = 0;    
-    let prodDiv = document.getElementById("prodOutput");
-    //loop from 5 to 21 inclusive in increments of 4
-    for (i = 5; i <= 21; i *= 4) {
-      prodDiv.textContent += i + " * ";
-      counter *= i;
+    let generateForProduct = () => {
+        
+      let counter = 0;    
+      let prodDiv = document.getElementById("forprodoutput");
+      //loop from 5 to 21 inclusive in increments of 4
+      for (i = 5; i <= 21; i *= 4) {
+        counter *= i;
+      }
+      prodDiv.innerHTML += `<br>The product of the numbers is: ${counter}`;
     }
-    prodDiv.innerHTML += `<br>The product of the numbers is: ${counter}`;
 
-  }
+    document.getElementById("forsumbutton").onclick = generateForSum;
+    document.getElementById("forprodbutton").onclick = generateForProduct;
+    </script>
 
-  document.getElementById("sumButton").onclick = generateSum;
-  document.getElementById("prodButton").onclick = generateProduct;
+    <h2>While statement</h2>
+    <div id="whilesumoutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
+    <button id="whilesumbutton">get the Sum!</button>
+    <div id="whileprodoutput" style="margin: 0 auto; width: 50%; font-size: 20px; font-family: monospace; border: 2px solid #000; height: 80px; text-align: center;"></div>
+    <button id="whileprodbutton">get the product!</button>
 
-</script>
+    <script>
+    let generateWhileSum = () => {
+        
+      let counter = 0;
+      let loopCount = 0;
+      let sumDiv = document.getElementById("whilesumoutput");
+      while (loopCount <= 21) {
+        loopCount++;
+        counter += 3;
+      }
+      sumDiv.innerHTML = `The sum of all of the integers in increments of 3 up to and including 21 is: <span style="color:red;">${counter}</span>`;
+    }
+
+
+    let generateWhileProduct = () => {
+        
+      let counter = 1;
+      let prodDiv = document.getElementById("whileprodoutput");
+      while (counter <= 21) {
+        counter *= 3;
+      }
+      prodDiv.innerHTML = `The product of all of the integers in increments of 3 up to and including 21 is: <span style="color:red;">${counter}</span>`;
+    }
+
+    document.getElementById("whilesumbutton").onclick = generateWhileSum;
+    document.getElementById("whileprodbutton").onclick = generateWhileProduct;
+    </script>
   </main>
 </div>
 
